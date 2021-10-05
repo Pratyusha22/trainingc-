@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>My Home Page</title>
+        
+    <link rel="stylesheet" href="Style.css"/>
+    <script>
+        function validate()
+        {
+        var uname = document.getElementById('username').value
+        var pwd = document.getElementById('password').value
+        var pattern = /^([a-z])\@([a-z])\.([a-z]{3})$/
+        if(pattern.test(uname) == false)
+            alert("Please enter valid email id")
+        else
+            alert("Email id is valid");
+        }
+    </script>
+    </head>
+       
+    <body  >
+        <form>
+            <table border="1" align="center"width= 50% height = 50% id="table">
+                <th> Login Page</th> 
+                <tr><td align="center">
+                    <label for="username">Email id:</label>
+                    <input type="text" id="username"/> <br> <br>
+                </td></tr>
+                <tr><td align="center">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password"/> <br> <br>
+                </td></tr>
+                <tr><td align="center"> 
+                    <input type="submit" onclick="validate()"/>
+                </td></tr>
+            </table><br><br>
+        </form>
+    </body>
+</html>

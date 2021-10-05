@@ -1,0 +1,14 @@
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.exe
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.deps.json
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.runtimeconfig.json
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.runtimeconfig.dev.json
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.dll
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\bin\Debug\netcoreapp3.1\ltitraining.pdb
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.csproj.AssemblyReference.cache
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.AssemblyInfoInputs.cache
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.AssemblyInfo.cs
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.csproj.CoreCompileInputs.cache
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.dll
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.pdb
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.genruntimeconfig.cache
+C:\Users\S\Desktop\c#ltitraining\ltitraining\ltitraining\obj\Debug\netcoreapp3.1\ltitraining.GeneratedMSBuildEditorConfig.editorconfig

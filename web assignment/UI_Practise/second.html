@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta character ="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Document</title>
+        <script>
+        function Add()
+        {
+            var g = parseInt(document.getElementById("txt1").value);
+            var h = parseInt(document.getElementById("txt2").value);
+            var i = parseInt(document.getElementById("txt3").value);
+            switch(h)
+            {
+                case '+' :document.write(g+i);
+                break;
+                case '-': document.write(g-i);
+                break;
+                case '*':document.write(g*i);
+                break;
+                case '/':document.write(g/i);
+                break;
+                default : document.write("INVALID OPERATOR");
+                break;
+            }
+        }
+            var n = 2;
+            for(var i=1;i<10;i++)
+            {
+                var res=i*n;
+            document.writeln("<Tablen+"*"+i+"="+res+"<br>");
+
+            } 
+        </script>
+    </head>
+    <body>
+        Number<input type="text" id="txt1"/>
+        <br>
+        Operator<input type="text" id="txt2"/><br>
+        Second Number<input type="text" id="txt3"/><br>
+        <input type="submit" onclick="Mtable"/><br>
+    </body>
+</html>

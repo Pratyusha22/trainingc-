@@ -1,0 +1,237 @@
+create database db
+use db
+
+create table Clients (Client_ID numeric(4) primary key,
+Cname nvarchar(40) not null ,Address varchar(30) ,
+Email nvarchar(30) unique , Phone numeric(10) ,
+Business nvarchar(20) not null)
+
+create table Departments (Deptno numeric(2) primary key ,
+Dname varchar(15) not null , Loc varchar(20))
+
+create table Employees (Empno numeric(4) primary key,
+Ename varchar(20) not null , Job varchar(15) ,
+Salary numeric(7) check (Salary > 0)  ,
+Deptno numeric (2) references Departments(Deptno))
+
+create table Projects (Project_ID numeric (3) primary key,
+Descr nvarchar(30) not null , Start_Date DATE , 
+Planned_End_Date DATE , Actual_End_Date DATE ,
+CONSTRAINT date_ck check (Actual_End_Date >Planned_End_Date ),
+Budget numeric(10) check (Budget>0),
+Client_ID numeric(4) references Clients(Client_ID))
+
+create table EmpprojectTasks(
+Project_ID numeric(3) references Projects(Project_ID) ,
+Empno numeric(4) references Employees (Empno),
+primary key (Project_ID , Empno),Start_Date DATE , 
+End_Date DATE , Task nvarchar(25) not null,
+Status nvarchar(15) not null)
+
+insert into Clients (Client_ID , Cname , Address , Email , Phone , Business) values
+(1001 ,'ACME Utilities' , 'Noida','contact@acmeutil.com', 9567880032 ,'Manufacturing'),
+(1002 ,'Trackon Consultants' , 'Mumbai','consult@trackon.com', 8734210090 ,'Consultant'),
+(1003 ,'MoneySaver Distributors' , 'Kolkata','save@moneysaver.com',7799886655,'Reseller' ),
+(1004 ,'Lawful Corp' , 'Chennai','justice@lawful.com',9210342219,'Professional' )
+
+insert into Departments (Deptno , Dname , Loc) values
+(10,'Design','Pune'),
+(20,'Development','Pune'),
+(30,'Testing','Mumbai'),
+(40,'Document','Mumbai')
+
+insert into Employees (Empno, Ename,Job,Salary,Deptno) values
+(7001,'Sandeep','Analyst',25000,10),
+(7002,'Rajesh','Designer',30000,10),
+(7003,'Madhav','Developer',40000,20),
+(7004,'Manoj','Developer',40000,20),
+(7005,'Abhay','Designer',35000,10),
+(7006,'Uma','Tester',30000,30),
+(7007,'Gita','Tech. Writer',30000,40),
+(7008,'Priya','Tester',35000,30),
+(7009,'Nutan','Developer',45000,20),
+(7010,'Smita','Analyst',20000,10),
+(7011,'Anand','Project Mgr',65000,10)
+
+insert into Projects (Project_ID , Descr , Start_Date,Planned_End_Date,Actual_End_Date,Budget,Client_ID)
+values(401,'Inventory','2011-04-01','2011-10-01','2011-10-31',150000,1001)
+
+insert into Projects (Project_ID , Descr , Start_Date,Planned_End_Date,Budget,Client_ID)
+values(402,'Accounting','2011-08-01','2012-01-12',500000,1002),
+(403,'Payroll','2011-10-01','2011-12-31',75000,1003),
+(404,'Contact Mgmt','2011-11-01','2011-12-31',50000,1004)
+
+insert into EmpprojectTasks(Project_ID, Empno,Start_Date,End_Date,Task,Status) values
+(401,7001,'2011-04-01','2011-04-20','System Analysis','Completed'),
+(401,7002,'2011-04-21','2011-05-30','System Design','Completed'),
+(401,7003,'2011-06-01','2011-07-15','Coding','Completed'),
+(401,7004,'2011-07-18','2011-09-01','Coding','Completed'),
+(401,7006,'2011-09-03','2011-09-15','Testing','Completed'),
+(401,7009,'2011-09-11','2011-10-05','Code Change','Completed'),
+(401,7008,'2011-10-06','2011-10-16','Testing','Completed'),
+(401,7007,'2011-10-06','2011-10-22','Documentation','Completed'),
+(401,7011,'2011-10-22','2011-10-31','Sign off','Completed'),
+(402,7010,'2011-08-01','2011-08-20','System Analysis','Completed'),
+(402,7002,'2011-08-22','2011-09-30','System Design','Completed')
+
+insert into EmpprojectTasks(Project_ID, Empno,Start_Date,Task,Status) values
+(402,7004,'2011-10-01','Coding','In Progress')
+
+select * from Clients
+select * from Departments
+select * from Employees
+select * from Projects
+select * from EmpprojectTasks
+
+--1. Display customer details with business as ‘Consultant’
+select * from Clients where Business = 'Consultant'
+
+--2. Display employee details who are not ‘Developers’
+select * from Employees where Job != 'Developer'
+
+--3. Display project details with budget > 100000
+select * from Projects where Budget > 100000
+
+--4. Display details of project that are already finished
+select * from Projects where Actual_End_Date is not null
+
+--5. Display employee names beginning with ‘M’
+select Ename from Employees where Ename like 'M%'
+
+--6. Display employee names ending with ‘a’
+select Ename from Employees where Ename like '%a'
+
+--7. Display the number of months project ‘Inventory’ took for completion
+select (DATEPART(MONTH,Actual_End_Date) - DATEPART(MONTH,Start_Date)) 'No. of months' from Projects where Descr = 'Inventory'
+
+--8. Display the task that is ‘In Progress’
+select * from EmpprojectTasks where Status = 'In Progress'
+
+--9. Display details of departments located in Pune
+select * from Departments where Loc = 'Pune'
+
+--10. Display employee name and salary in descending order of salary
+select Ename,Salary from Employees order by Salary desc
+
+--11. Display tasks in ascending order of end date
+select * from EmpprojectTasks order by  End_Date
+
+--12. Display distinct jobs from Employees table
+select distinct(Job) from Employees
+
+--13. Display employee names in all uppercase
+select upper(Ename) from Employees
+
+--14. Display employee name, salary and bonus calculated as 25% of salary
+select Ename,Salary,(Salary*0.25) 'bonus' from Employees
+
+--15. Display concatenated string ‘Employee works as Job’ (e.g. Manoj works as Developer) for all employees
+select CONCAT(Ename ,' works as ',Job)'Concatenated String' from Employees
+
+--16. Display day of week (e.g. Friday) for each start date of projects
+select Descr, DATENAME(WEEKDAY,Start_Date)'Day of week'  from Projects
+
+--17. Display position number of ‘@’ symbol in each email id of clients
+select CHARINDEX('@',Email) 'position number' from Clients
+
+--18. Display first 3 characters of each client name
+select SUBSTRING(Cname,0,4) 'first 3 characters' from Clients
+
+--19. Display project budget values formatted as ‘$150,000’
+select FORMAT(Budget ,'C4') from Projects
+
+--20. Display planned end date and review date as 3 months after planned end date for each project
+select Planned_End_Date, DATEADD(MONTH,03,Planned_End_Date)'Review date' from Projects
+
+--1. Display count of clients
+select COUNT(Client_ID) 'No. of Clients' from Clients
+
+--2. Display count of employees and sum of their salaries
+select COUNT(Empno)'No. of Employees' , SUM(Salary) 'Total Salary' from Employees
+
+--3. Display max salary per department
+select Deptno,MAX(Salary)'Max salary per department' from Employees group by Deptno
+
+--4. Display min salary per job
+select job , MIN(Salary)'Min salary per job' from Employees group by Job
+
+--5. Display average salary
+select AVG(Salary) 'Average salary'from Employees
+
+--6. Display sum of budget
+select SUM(Budget) 'Sum of budget' from Projects
+
+--7. Display count of ‘Coding’ task
+select COUNT(Task) 'No. of ‘Coding’ task' from EmpprojectTasks where Task = 'Coding'
+
+--8. Display department wise count and sum of salary of employees
+select Deptno,COUNT(Deptno)'No. of Employees',SUM(Salary)'total salary per department' from Employees group by Deptno
+
+--9. Display client names and their project desc, start date and budget
+select c.Cname , p.Descr , p.Start_Date , p.Budget from Projects p join Clients c on p.Client_ID = c.Client_ID
+
+--10. Display department name, employee name and job
+select d.Dname , e.Ename, e.Job from Employees e join Departments d on e.Deptno = d.Deptno order by d.Dname
+
+--11. Display names of employees doing ‘System Analysis’ along with project name
+select e.Ename,p.Descr from Projects p , EmpprojectTasks ep 
+join Employees e on e.Empno = ep.Empno 
+where ep.Task='System Analysis' and p.Project_ID = ep.Project_ID
+
+--12. Display job wise count
+select Job , COUNT(Job)'No. of employees' from Employees group by Job
+
+--13. Display employee numbers not present in EmpProjectTasks table using necessary set operator
+select Empno from Employees EXCEPt select Empno from EmpprojectTasks
+
+--14. Display employee numbers present in both Employees and EmpProjectTasks table using necessary set operator
+select Empno from Employees INTERSECT select Empno from EmpprojectTasks
+
+--15. Display all employee numbers present in both Employees and EmpProjectTasks table using necessary set operator
+select Empno from Employees UNION select Empno from EmpprojectTasks
+
+--1. Display the project name with highest budget
+select Descr from Projects where budget = 
+(select MAX(Budget) from Projects)
+
+--2. Display employee names who have same job as ‘Madhav’
+select Ename from Employees where Job =
+(select Job from Employees where Ename = 'Madhav') and Ename != 'Madhav'
+
+--3. Display employee’s name and job who worked on ‘Code Change’ task of project 401
+select Ename , Job from employees where Empno = 
+(select Empno from EmpprojectTasks where Task= 'Code Change' and Project_ID = 401)
+
+--4. Display client name whose project’s ‘Coding’ task is ‘In Progress’
+select c.Cname from Clients c join Projects p on p.Client_ID = c.Client_ID 
+where p.Project_ID =(select Project_ID from EmpprojectTasks where Task= 'Coding' and Status = 'In Progress') 
+
+--5. Display department number, names and salaries of employees who are earning max salary in their departments
+select Deptno , Ename , Salary from Employees where salary = 
+(select MAX(Salary) from Employees)
+
+--6. Display name of department with highest SUM of salary
+create view deptartment_salary as
+(select d.Deptno,d.Deptno, SUM(e.Salary)'Sum_Salary' from Employees e , Departments d
+where e.Deptno = d.Deptno
+group by d.Deptno,d.Dname)
+
+select * from deptartment_salary where Sum_Salary = (select MAX(Sum_Salary) from deptartment_salary)
+
+--7. Create a table named ‘CLIENT_PROJECTS’ using CTAS method that includes CLIENT_ID, CNAME, ADDRESS,BUSINESS,DESCR,BUDGET columns from CLIENTS and PROJECTS tables
+Select c.Client_ID , c.Cname,c.Address, c.Business , p.Descr ,p.Budget
+into Client_Projects from Clients c , Projects p where c.Client_ID = p.Client_ID
+select * from Client_Projects
+
+--8. Increase salary of employees by 15% who have performed task of ‘Testing’ on projects
+select Ename , Salary = Salary + Salary * .15  from Employees where Empno =
+any (select Empno from EmpprojectTasks where Task = 'Testing')
+
+--9. Create a view named DEPT_EMP with DEPTNO,DNAME,LOC,ENAME,JOB, and SALARY columns
+create view Dept_emp as 
+select d.* , e.Ename , e.Job ,e.Salary from Departments d , Employees e where e.Deptno = d.Deptno
+select * from Dept_emp
+
+--10. Create synonym EPT for table EmpProjectTasks
+create synonym EPT for EmpprojectTasks
+

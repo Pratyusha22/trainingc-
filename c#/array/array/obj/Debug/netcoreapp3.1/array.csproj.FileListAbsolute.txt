@@ -1,0 +1,13 @@
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.exe
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.deps.json
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.runtimeconfig.json
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.runtimeconfig.dev.json
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.dll
+C:\Users\S\Desktop\array\array\bin\Debug\netcoreapp3.1\array.pdb
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.AssemblyInfoInputs.cache
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.AssemblyInfo.cs
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.csproj.CoreCompileInputs.cache
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.dll
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.pdb
+C:\Users\S\Desktop\array\array\obj\Debug\netcoreapp3.1\array.genruntimeconfig.cache

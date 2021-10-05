@@ -1,0 +1,30 @@
+<h1>Add Products</h1>
+<form [formGroup]="addproductform">
+    <p>
+        <label for="id">ID:</label>
+        <input type="text" id="id" formControlName="id"/>
+    </p>
+
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name"/>
+    </p>
+
+    <p>
+        <label for="description">Description:</label>
+        <input type="text" id="description" formControlName = "description"/>
+    </p>
+
+    <p>
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity" formControlName = "quantity"/>
+    </p>
+
+    <p>
+        <label for="price">Price:</label>
+        <input type="text" id="price" formControlName = "price"/>
+    </p>
+    <p>
+        <input type="submit" value="Add Product" (click)=submitForm()/>
+    </p>
+</form>
